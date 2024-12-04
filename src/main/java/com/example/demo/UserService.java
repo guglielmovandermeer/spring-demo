@@ -22,6 +22,12 @@ public class UserService {
                 .ifPresent(dbUser -> doUpdate(user, dbUser));
     }
 
+    public void updateUsers(List<UserDto> users) {
+        for(UserDto user : users) {
+            updateUser(user);
+        }
+    }
+
     private static void doUpdate(UserDto user, UserEntity dbUser) {
         dbUser.setEmail(user.getEmail());
     }
