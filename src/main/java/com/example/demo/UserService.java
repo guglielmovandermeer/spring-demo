@@ -14,22 +14,24 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired private CrudRepository<UserEntity, Long> userRepository;
+    @Autowired private UserRepository userRepository;
 
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void updateUser(UserDto user) {
-        userRepository.findById(user.getId())
-                .ifPresent(dbUser -> doUpdate(user, dbUser));
+
+    private static UserEntity toEntity(UserDto userDto) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(userDto.getEmail());
+        userEntity.setFirstName(userDto.getFirstName());
+        userEntity.setLastName(userDto.getLastName());
+        return userEntity;
     }
 
-    public void updateUsers(List<UserDto> users) {
-        for(UserDto user : users) {
-            updateUser(user);
-        }
-    }
-
-    private static void doUpdate(UserDto user, UserEntity dbUser) {
-        dbUser.setEmail(user.getEmail());
+    private static UserDto toDto(UserEntity userEntity) {
+        UserDto userDto = new UserDto();
+        userDto.setId(userEntity.getId());
+        userDto.setEmail(userEntity.getEmail());
+        userDto.setFirstName(userEntity.getFirstName());
+        userDto.setLastName(userEntity.getLastName());
+        return userDto;
     }
 
 }

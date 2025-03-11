@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    @Autowired private UserService userService;
 
-    public ResponseEntity<Void> updateUser(@RequestBody UserDto userDto) {
-        userService.updateUser(userDto);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+
+
 
 }

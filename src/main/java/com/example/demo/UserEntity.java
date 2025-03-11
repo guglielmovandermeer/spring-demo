@@ -19,6 +19,12 @@ public class UserEntity {
     @Column(nullable = false)
     private Long id;
 
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
     @Column(name = "email")
     private String email;
 
@@ -36,5 +42,21 @@ public class UserEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
